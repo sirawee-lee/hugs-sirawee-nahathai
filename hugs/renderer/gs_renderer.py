@@ -136,12 +136,13 @@ def render(means3D, feats, opacity, scales, rotations, data, scaling_modifier=1.
         campos=data['camera_center'],
         prefiltered=False,
         debug=False,
+        antialiasing=False,
     )
 
     rasterizer = GaussianRasterizer(raster_settings=raster_settings)
         
     # Rasterize visible Gaussians to image, obtain their radii (on screen). 
-    rendered_image, radii = rasterizer(
+    rendered_image, radii, _ = rasterizer(
         means3D=means3D,
         means2D=means2D,
         shs=shs,
