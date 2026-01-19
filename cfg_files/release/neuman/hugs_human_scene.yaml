@@ -1,7 +1,7 @@
 seed: 0
 mode: human_scene
 output_path: output
-exp_name: demo
+exp_name: demo_new
 dataset_path: ''
 detect_anomaly: false
 debug: false
@@ -24,7 +24,7 @@ train:
 human:
   name: hugs_trimlp
   ckpt: null
-  sh_degree: 0
+  sh_degree: 1
   n_subdivision: 2
   only_rgb: false
   use_surface: false

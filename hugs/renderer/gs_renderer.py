@@ -30,6 +30,12 @@ def render_human_scene(
 
     feats = None
     if render_mode == 'human_scene':
+        # Check if the shapes of the tensors match before concatenation
+        if human_gs_out['shs'].shape[1:] != scene_gs_out['shs'].shape[1:]:
+            raise ValueError(f"Shape mismatch: human_gs_out['shs'] has shape {human_gs_out['shs'].shape}, "
+                             f"but scene_gs_out['shs'] has shape {scene_gs_out['shs'].shape}")
+
+        # Proceed with concatenation if shapes match
         feats = torch.cat([human_gs_out['shs'], scene_gs_out['shs']], dim=0)
         means3D = torch.cat([human_gs_out['xyz'], scene_gs_out['xyz']], dim=0)
         opacity = torch.cat([human_gs_out['opacity'], scene_gs_out['opacity']], dim=0)
